@@ -47,11 +47,11 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        button = findViewById(R.id.btnSignUp)
+//        button = findViewById(R.id.btnSignUp)
         drawerlayout =  findViewById(R.id.drawerLayout)
         navView = findViewById(R.id.navView)
         toolbar = findViewById(R.id.myToolbar)
-        textView= findViewById(R.id.txtPage)
+//        textView= findViewById(R.id.txtPage)
 
         setSupportActionBar(toolbar)
         val toogle =
@@ -65,29 +65,44 @@ class MainActivity : AppCompatActivity() {
         drawerlayout.addDrawerListener(toogle)
         toogle.syncState()
 
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, HomeFragment())
+                .commit()
+        }
+
+
         navView.setNavigationItemSelectedListener {
-            when (it.itemId) {
+
+            val fragment = when (it.itemId) {
+
                 R.id.menuHome -> {
-                    textView.text = "My Home Page"
-                    Toast.makeText(this, "Clicked on Home", Toast.LENGTH_SHORT).show()
+                    HomeFragment()
                 }
+
                 R.id.menuSetting -> {
-                    textView.text = "My Setting Page"
-                    Toast.makeText(this, "Clicked on Setting", Toast.LENGTH_SHORT).show()
+                    SettingFragment()
                 }
+
                 R.id.menuAbout -> {
-                    textView.text = "My About Page"
-                    Toast.makeText(this, "Clicked on About", Toast.LENGTH_SHORT).show()
+                    AboutFragment()
                 }
+
                 R.id.menuContact -> {
-                    textView.text = "My Contact Page"
-                    Toast.makeText(this, "Clicked on Contact", Toast.LENGTH_SHORT).show()
+                    ContactFragment()
                 }
+
                 R.id.menuFeedback -> {
-                    textView.text = "My Feedback Page"
-                    Toast.makeText(this, "Clicked on Feedback", Toast.LENGTH_SHORT).show()
+                    FeedbackFragment()
                 }
+
+                else -> HomeFragment()
             }
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .commit()
 
             drawerlayout.closeDrawers()
             true
@@ -95,9 +110,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        button.setOnClickListener {
-            showDialog()
-        }
+//        button.setOnClickListener {
+//            showDialog()
+//        }
 
     }
 
