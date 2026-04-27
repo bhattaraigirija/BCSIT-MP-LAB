@@ -1,8 +1,13 @@
 package com.mobile.bcsit6th
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.IBinder
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -40,12 +45,62 @@ class MainActivity : AppCompatActivity() {
     private lateinit var textView: TextView
     private lateinit var button: Button
 
+//    private var myService: MyService? = null
+//    private var isBound = false
+//
+//    // Service Connection (Binding)
+//    private val connection = object : ServiceConnection {
+//        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+//            val binder = service as MyService.MyBinder
+//            myService = binder.getService()
+//            isBound = true
+//            Log.d("MainActivity", "Service Connected")
+//        }
+//
+//        override fun onServiceDisconnected(name: ComponentName?) {
+//            isBound = false
+//        }
+//    }
+//
+//
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        if (isBound) {
+//            unbindService(connection)
+//        }
+//    }
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+//        val btnStartService = findViewById<Button>(R.id.btnStartService)
+//        val btnThread = findViewById<Button>(R.id.btnThread)
+//        val btnStopService = findViewById<Button>(R.id.btnStopService)
+//
+//// 🔹 Start Service
+//        btnStartService.setOnClickListener {
+//            val intent = Intent(this, MyService::class.java)
+//            startService(intent)   // this triggers onStartCommand()
+//        }
+//
+//// 🔹 Stop Service
+//        btnStopService.setOnClickListener {
+//            val intent = Intent(this, MyService::class.java)
+//            stopService(intent)   // this triggers onDestroy()
+//        }
+//
+//        // 🔹 Thread Example
+//        btnThread.setOnClickListener {
+//            Thread {
+//                for (i in 1..5) {
+//                    Thread.sleep(1000)
+//                    Log.d("Thread", "Running: $i")
+//                }
+//            }.start()
+//        }
 
 //        button = findViewById(R.id.btnSignUp)
         drawerlayout =  findViewById(R.id.drawerLayout)
