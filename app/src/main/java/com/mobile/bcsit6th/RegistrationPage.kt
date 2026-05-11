@@ -12,9 +12,13 @@ import androidx.compose.foundation.interaction.HoverInteraction
 import com.google.android.material.appbar.MaterialToolbar
 
 class RegistrationPage : AppCompatActivity() {
+
+    lateinit var databaseHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration_page)
+        databaseHelper = DatabaseHelper(this)
 
         val toolbar = findViewById<MaterialToolbar>(R.id.registrationToolbar)
         setSupportActionBar(toolbar)
@@ -65,13 +69,31 @@ class RegistrationPage : AppCompatActivity() {
 
 
             //pass data to another activity
-            val intent = Intent(this, ProfileActivity::class.java)
-            intent.putExtra("name", nameStr)
-            intent.putExtra("email", emailStr)
-            intent.putExtra("address", addressStr)
-            intent.putExtra("phone", phoneStr)
-            intent.putExtra("gender", gender)
-            startActivity(intent)
+//            val intent = Intent(this, ProfileActivity::class.java)
+//            intent.putExtra("name", nameStr)
+//            intent.putExtra("email", emailStr)
+//            intent.putExtra("address", addressStr)
+//            intent.putExtra("phone", phoneStr)
+//            intent.putExtra("gender", gender)
+//            startActivity(intent)
+
+            // Save data in SQLite
+            val result = databaseHelper.insertStudent(
+                nameStr,
+                emailStr,
+                addressStr,
+                phoneStr,
+                gender
+            )
+            if(result) {
+                Toast.makeText(
+                    this, "Registration Successful",  Toast.LENGTH_SHORT).show()
+                startActivity(
+                    Intent(this, StudentListActivity::class.java)
+                )
+            } else {
+                Toast.makeText(this, "Registration Failed", Toast.LENGTH_SHORT).show()
+            }
         }
 
 
