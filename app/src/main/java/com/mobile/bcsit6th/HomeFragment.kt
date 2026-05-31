@@ -42,7 +42,8 @@ class HomeFragment : Fragment() {
         }
 
         cardCourses.setOnClickListener {
-            Toast.makeText(requireContext(), "Courses Clicked", Toast.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), CoursesActivity::class.java)
+            startActivity(intent)
         }
 
         cardGrades.setOnClickListener {
