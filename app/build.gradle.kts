@@ -5,14 +5,12 @@ plugins {
 
 android {
     namespace = "com.mobile.bcsit6th"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.mobile.bcsit6th"
         minSdk = 28
-        targetSdk = 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -48,6 +46,10 @@ dependencies {
     // Retrofit & Gson
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
+    // Google Maps & Location
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
